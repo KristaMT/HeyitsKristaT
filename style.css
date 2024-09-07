@@ -38,22 +38,4 @@
 	}
 
 
-
-#change_color{clear:both; padding-right:55px; _padding-right:70px; margin-top:15px; text-align:right; position:relative; z-index:1000}
-#change_color #change_text{float:right; padding-right:5px;}
-#change_color ul{padding:0; margin:0; list-style-type:none; }
-#change_color ul li{float:right; width:20px; padding:0; margin:0 3px 0 0; _cursor:pointer; position:relative;}
-#change_color ul li a{cursor:pointer; display:block; position:relative; height:20px; border:1px solid gray; text-indent:-9999px; text-align:left; position:relative; outline:none;}
-
-#change_color li#change_gray a{background-color:#e9e9e2;}
-#change_color li#change_yellow a{background-color:#ffff66;}
-#change_color li#change_almond a{background-color:#f4eda5;}
-#change_color li#change_biscuit a{background-color:#f5f2c9;}
-#change_color li#change_white a{background-color:white;}
-#change_color li#change_pink a{background-color:#ffccff;}
-#change_color li#change_light_blue a{background-color:#ccffff;}
-
-	/* Change the background color of dropdown links on hover */
-	.navbar ul ul li a:hover {
-		background-color: #555;
 	}
