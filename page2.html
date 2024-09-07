@@ -42,7 +42,7 @@
 
 <div class="parallax"></div>
 
-<div style="height:1px">
+<div style="height:10px">
 Scroll Up and Down this page to see the parallax scrolling effect.
 This div is just here to enable scrolling.
 Tip: Try to remove the background-attachment property to remove the scrolling effect.
@@ -54,15 +54,12 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
 <h1>About Me</h1>
 <p>Hi everyone! I'm studying Computer Science/ Cyber Security, but I hope you enjoy this webpage I've designed. </p>
 	<p>However, I'd love you to help me keep designing it, how about we start with the color?</p>
-<button class="btnBlue"     onclick="changeColor('blue')">Blue</button>
-<button class="btnRed"      onclick="changeColor('red')">Red</button>
-<button class="btnGreen"    onclick="changeColor('green')">Green</button>
-<button class="btnOrange"   onclick="changeColor('orange')">Orange</button>
-<button class="btnYellow"   onclick="changeColor('yellow')">Yellow</button>
-<button class="btnPink"     onclick="changeColor('pink')">Pink</button>
-<button class="btnPurple"   onclick="changeColor('purple')">Purple</button>
-<button class="btnBrown"    onclick="changeColor('brown')">Brown</button>
-<button class="btnBlack"    onclick="changeColor('black')">Black</button>
-<button class="btnGray"     onclick="changeColor('gray')">Gray</button>
+<div id='change_color'>
+<ul>
+<li id='change_gray'><a href='/index.php?bg=gray' title='Gray'>Gray</a></li><li id='change_yellow'><a href='/index.php?bg=yellow' title='Yellow'>Yellow</a></li><li id='change_almond'><a href='/index.php?bg=almond' title='Almond'>Almond</a></li><li id='change_biscuit'><a href='/index.php?bg=biscuit' title='Biscuit'>Biscuit</a></li><li id='change_white'><a href='/index.php?bg=white' title='White'>White</a></li><li id='change_pink'><a href='/index.php?bg=pink' title='Pink'>Pink</a></li><li id='change_light_blue'><a href='/index.php?bg=light_blue' title='Light Blue'>Light Blue</a></li> </ul>
+<p id='change_text'>Change the background color:</p>
+	
+
+	<div style="height:100px">
 </body>
 </html>
