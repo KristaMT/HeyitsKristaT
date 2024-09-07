@@ -38,51 +38,6 @@
 	}
 
 
-	}
-function black() {
-	document.body.style.backgroundColor="black"
-}
+	
 
-function blue() {
-	document.body.style.backgroundColor="blue"
-}
-
-function fuchsia() {
-	document.body.style.backgroundColor="fuchsia"
-}
-
-function green() {
-	document.body.style.backgroundColor="green"
-}
-
-function orange() {
-	document.body.style.backgroundColor="#c44000"
-}
-
-function purple() {
-	document.body.style.backgroundColor="purple"
-}
-
-function red() {
-	document.body.style.backgroundColor="red"
-}
-
-function oil() {
-	document.body.style.backgroundColor="#808000"
-}
-
-function white() {
-	document.body.style.backgroundColor="white"
-}
-
-function brown() {
-	document.body.style.backgroundColor="brown"
-}
-
-function yellow() {
-	document.body.style.backgroundColor="yellow"
-}
-
-function lgreen() {
-	document.body.style.backgroundColor="#00ff00"
 }
