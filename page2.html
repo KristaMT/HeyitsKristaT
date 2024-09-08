@@ -62,8 +62,31 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
 </ul>
 	<p>For this website, I'd like to demonstrate some of the skills I have in coding. &#128522;</p> 
 
-	<form>  <input type=”button” onClick=”document.bgColor=’RED'” value=” RED “> <input type=”button” onClick=”document.bgColor=’YELLOW'” value=” YELLOW “> <input type=”button” onClick=”document.bgColor=’PINK'” value=” PINK “> </form> 
-	
+	<style>
+
+  body {
+
+    background-color: white;
+
+  }
+
+</style>
+
+
+
+<button onclick="changeBackgroundColor()">Change Background</button>
+
+
+
+<script>
+
+  function changeBackgroundColor() {
+
+    document.body.style.backgroundColor = "lightblue"; 
+
+  }
+
+</script>
 
 
 	<div style="height:500px">
