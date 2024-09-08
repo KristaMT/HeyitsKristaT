@@ -71,11 +71,26 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
 
   }
 
+    <title>The getElementById() Function</title>
+    <script>
+      function updateParagraphText(){
+        let labelElement = document.getElementById('label');
+
+        labelElement.innerText = 'Much better!';
+      }
+    </script>
+  </head>
+  <body>
+    <p id="label">
+      Change the background
+
+
+		
 </style>
 
 
 
-<button onclick="changeBackgroundColor()">Change Background</button> <p><-- Click here!</p>
+<button onclick="changeBackgroundColor(); "updateParagraphText();"">Click me!</button>  <p><-- Click here!</p>
 
 
 
@@ -84,7 +99,6 @@ Tip: Try to remove the background-attachment property to remove the scrolling ef
   function changeBackgroundColor() {
 
     document.body.style.backgroundColor = "lightblue"; 
-	  <p> Wow! Much better!</p>
 
   }
 
