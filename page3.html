@@ -41,8 +41,8 @@
 	
 <br>
 	<p>Phone number:</p>
-<input type="tel" oninput="phoneFormat(this)">
-	  <span id="name-error" class="error-message"></span>
+<input type="tel" oninput="phoneFormat(this)" required />
+	  
 
 
 	<body>
@@ -79,15 +79,15 @@ function phoneFormat(field) {
 </body>
 	
 <p>Email:</p>
-<input type="email" placeholder="Enter your email">
-	<span id="name-error" class="error-message"></span>
+<input type="email" placeholder="Enter your email" required/>
+
 		
 
 
 		<br><br>
 	<p> Date of Birth:</p>
-	<input type="date" name="bday" min="1900-01-01" max="2024-09-16">
-<span id="name-error" class="error-message"></span>
+	<input type="date" name="bday" min="1900-01-01" max="2024-09-16" required/>
+
 	<script>
 		$(function(){
     var dtToday = new Date();
