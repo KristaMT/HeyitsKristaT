@@ -36,6 +36,14 @@
   <input type="submit" value="Submit">
 </form>
 
+    <form action="/url" method="GET">
+        <p>Please enter your first  and last name:</p>
+        <input type="text" name="first_name" placeholder="John" required>
+        <input type="text" name="last_name" placeholder="Doe" required>
+        <button type="submit">Submit</button>  
+    </form>
+	
+
 <br>
 	<p>Phone number:</p>
 <input type="tel" oninput="phoneFormat(this)">
@@ -76,7 +84,7 @@ function phoneFormat(field) {
 </form>
 	<form>
 <p>Email:</p>
-/*<input type="email" placeholder="Enter your email">
+<input type="email" placeholder="Enter your email">
 <input type="submit" value="Submit">
 </form>
 
