@@ -34,45 +34,8 @@
 
 <br>
 	<p>Enter your address:</p>
-    <input name="street-address" autocomplete="home street-address" required />
-    <input name="postal-code" autocomplete="home postal-code" required />
-    <input name="locality" autocomplete="home locality" required />
-
-
- <script type="text/javascript">
-    function OpenChild() {
-    var Area = document.getElemenenter code heretById('<%=ddlArea.ClientID %>');
-    var City = document.getElementById('<%=ddlCity.ClientID %>');
-    var State = document.getElementById('<%=ddlstate.ClientID %>');
-    var Country = document.getElementById('<%=ddlCountryName.ClientID %>');
-    if (Area.value != "" && City.value != "" && State.value != "" && Country.value != "") {
-    var MyArgs = new Array(Area.options[Area.selectedIndex].text,
-    City.options[City.selectedIndex].text,
-    State.options[State.selectedIndex].text,
-    Country.options[Country.selectedIndex].text);
-    var WinSettings = "center:yes;resizable:no;dialogHeight:500px;dialogWidth:900px;"
-    // ALTER BELOW LINE - supply correct URL for Child Form
-    var MyArgs = window.showModalDialog("http://YourURL/GoogleMapLocationSelector.aspx?Area=" + MyArgs[0].toString() + "&City=" + MyArgs[1].toString() + "&State=" + MyArgs[2].toString() + "&Country=" + MyArgs[3].toString(), MyArgs, WinSettings);
-
-    if (MyArgs == null) {
-    window.alert("Error occurred while setting geo location.");
-    }
-    else {
-    document.getElementById('<%=txtLongitude.ClientID %>').value = MyArgs[0].toString();
-    document.getElementById('<%=txtLatitude.ClientID %>').value = MyArgs[1].toString();
-    document.getElementById('<%=hfLatitude.ClientID %>').value = MyArgs[1].toString();
-    document.getElementById('<%=hfLongitude.ClientID %>').value = MyArgs[0].toString();
-    }
-    }
-    else {
-    alert("Plz Select Area/City/State");
-    return false;
-    }
-    }
-    </script>
-
-
-
+    <p>Street Address:</p><input name="street-address" autocomplete="home street-address" required />
+    <p>Zip Code:</p> <input onkeydown="return /[0-9]/i.test(event.key)" name="postal-code" autocomplete="home postal-code" required max= "5"/>
 	
 	
 <br>
