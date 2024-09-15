@@ -97,7 +97,7 @@
 	
 <br>
 	<p>Phone number:</p>
-<input type="tel" oninput="phoneFormat(this)" required />
+<input onkeydown="return /[a-z]/i.test(event.key)" type="tel" oninput="phoneFormat(this)" required />
 	  
 
 
