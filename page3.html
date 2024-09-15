@@ -34,8 +34,17 @@
 
 <br>
 	<p>Enter your address:</p>
-    <p>Street Address:</p><input name="street-address" autocomplete="home street-address" required />
-    <p>Zip Code:</p> <input onkeydown="return /[0-9]/i.test(event.key)" name="postal-code" autocomplete="home postal-code" required max= "5"/>
+    <p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
+	<p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
+	<p>State:</p>		
+	<li>
+			<a href="#">State</a>
+			<ul>
+				<li>><p>FL</p></li>
+				<li><p>not FL</p></li>
+			</ul>
+		</li>
+    <p>Zip Code:</p> <input onkeydown="return /[0-9]/i.test(event.key)" name="postal-code" autocomplete="home postal-code" required min="0" max="5"/>
 	
 	
 <br>
