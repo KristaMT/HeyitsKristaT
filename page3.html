@@ -27,16 +27,15 @@
 
 <p>First name:</p>
 <form action="/action_page.php" method="post">
-  <input onkeydown="return /[a-z]/i.test(event.key)" >
+<input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="fname" required>
   <input type="submit" value="Submit">
-	
 </form>
 
 <p>Last name:</p><form action="/action_page.php" method="post">
-  <input onkeydown="return /[a-z]/i.test(event.key)" >
+<input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="lname" required>
   <input type="submit" value="Submit">
-	
 </form>
+
 
 </body>
 </html>
