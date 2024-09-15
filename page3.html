@@ -24,16 +24,14 @@
 <body>
 
 <h2>Fill out this form?</h2>
-</form>
+<form method="post" action="mailto:kristat925@gmail.com" >
 
-    <form action="/url" method="GET">
+   
         <p>Please enter your first  and last name:</p>
         <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="first_name" placeholder="first name" required>
         <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="last_name" placeholder="last name" required>
         <button type="submit">Submit</button>  
-    </form>
 	
-
 <br>
 	<p>Phone number:</p>
 <input type="tel" oninput="phoneFormat(this)">
@@ -72,15 +70,13 @@ function phoneFormat(field) {
 }
 	</script>
 </body>
-</form>
-	<form>
+	
 <p>Email:</p>
 <input type="email" placeholder="Enter your email">
 		
 
 
 		<br><br>
-</form>
 	<p> Date of Birth:</p>
 	<input type="date" name="bday" min="1900-01-01" max="2024-09-16">
 
@@ -108,7 +104,7 @@ function phoneFormat(field) {
 
 </body>
 </html>
-
-<input type="submit" value="Submit">
+<input type="submit" value="Send Email" /> 
+	</form>
 </body>
 </html>
