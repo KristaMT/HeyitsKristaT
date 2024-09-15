@@ -37,13 +37,12 @@
     <p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
 	<p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
 	<p>State:</p>		
-	<li>
-			<a href="#">State</a>
-			<ul>
-				<li>><p>FL</p></li>
-				<li><p>not FL</p></li>
-			</ul>
-		</li>
+ 		 <select name="state" id="state">
+  			  <option value="AL">AL</option>
+  			  <option value="AK">AK</option>
+  			  <option value="FL">FL</option>
+   		 <option value="FL">FL</option>
+  </select>
     <p>Zip Code:</p> <input onkeydown="return /[0-9]/i.test(event.key)" name="postal-code" autocomplete="home postal-code" required min="0" max="5"/>
 	
 	
