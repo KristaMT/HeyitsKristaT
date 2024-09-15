@@ -37,7 +37,7 @@
     <p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
 	<p>Street Address:</p><input name="street-address" autocomplete="home street-address" required >
 	<p>State:</p>		
- 		 <select name="state" id="state">
+ 		 <select name="state" id="state" required>
   			  <option value="AL">AL</option>
   			  <option value="AK">AK</option>
   			  <option value="AZ">AR</option>
@@ -90,8 +90,9 @@
 			 <option value="WI">WI</option>
 			 <option value="WY">WY</option>
   </select>
-    <p>Zip Code:</p> <input onkeydown="return /[0-9]/i.test(event.key)" name="postal-code" autocomplete="home postal-code" required min="0" max="5"/>
-	
+    <p>Zip Code:</p> 
+
+	<input type="text" pattern="[0-9]{5}" required/>
 	
 <br>
 	<p>Phone number:</p>
