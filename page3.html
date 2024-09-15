@@ -74,6 +74,32 @@ function phoneFormat(field) {
 	</script>
 </body>
 </form>
+	<form>
+<p>Email:</p>
+<input type="email" placeholder="Enter your email">
+<input type="submit" value="Submit">
+</form>
+
+	<input type="date" name="bday" min="2014-05-11" max="2014-05-20">
+
+	<script>
+		$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;    
+    $('#txtDate').attr('max', maxDate);
+});
+		
+	</script>
 
 </body>
 </html>
