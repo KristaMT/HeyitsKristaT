@@ -41,7 +41,7 @@
 	<input type="submit" value="Submit">
 
 	<body>
-
+<script>
 	let previousPhone = ''
 function phoneFormat(field) {
     const specialCharCount = (field.value.match(/\D/g) || []).length;
@@ -70,6 +70,7 @@ function phoneFormat(field) {
         field.selectionEnd = cursorPosition;
     }
 }
+	</script>
 </body>
 </form>
 
