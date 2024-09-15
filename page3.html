@@ -30,7 +30,7 @@
         <p>Please enter your first  and last name:</p>
         <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="first_name" placeholder="first name" required>
         <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="last_name" placeholder="last name" required>
-        <button type="submit">Submit</button>  
+	<span id="name-error" class="error-message"></span>
 
 <br>
 	<p>Enter your address:</p>
@@ -42,7 +42,7 @@
 <br>
 	<p>Phone number:</p>
 <input type="tel" oninput="phoneFormat(this)">
-	  <button type="submit">Submit</button>  
+	  <span id="name-error" class="error-message"></span>
 
 
 	<body>
@@ -80,13 +80,14 @@ function phoneFormat(field) {
 	
 <p>Email:</p>
 <input type="email" placeholder="Enter your email">
+	<span id="name-error" class="error-message"></span>
 		
 
 
 		<br><br>
 	<p> Date of Birth:</p>
 	<input type="date" name="bday" min="1900-01-01" max="2024-09-16">
-
+<span id="name-error" class="error-message"></span>
 	<script>
 		$(function(){
     var dtToday = new Date();
