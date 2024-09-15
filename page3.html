@@ -40,6 +40,8 @@
 <input type="tel" oninput="phoneFormat(this)">
 	<input type="submit" value="Submit">
 
+	<body>
+
 	let previousPhone = ''
 function phoneFormat(field) {
     const specialCharCount = (field.value.match(/\D/g) || []).length;
@@ -68,6 +70,7 @@ function phoneFormat(field) {
         field.selectionEnd = cursorPosition;
     }
 }
+</body>
 </form>
 
 </body>
