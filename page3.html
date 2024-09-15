@@ -168,8 +168,11 @@ function phoneFormat(field) {
 <button onclick="myFunction()">Submit</button>
 
 <script>
-	function myFunction() {
- 	 alert("Please confirm your answers before submission");
+	{
+    if(!confirm('Please confirm answers before submitting')) {
+        e.preventDefault();
+
+}
 }
 		
 </script>
