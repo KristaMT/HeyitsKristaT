@@ -38,8 +38,8 @@
 
     <form action="/url" method="GET">
         <p>Please enter your first  and last name:</p>
-        <input type="text" name="first_name" placeholder="John" required>
-        <input type="text" name="last_name" placeholder="Doe" required>
+        <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="first_name" placeholder="first name" required>
+        <input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="last_name" placeholder="last name" required>
         <button type="submit">Submit</button>  
     </form>
 	
