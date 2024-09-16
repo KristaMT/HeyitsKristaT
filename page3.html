@@ -164,20 +164,30 @@ function phoneFormat(field) {
 
 </body>
 </html>
-	<script>
-	const forms = document.querySelectorAll('div.g-recaptcha');
-forms.forEach(form=> {
-    const formParentElement = form.parentElement;
 
-    formParentElement.addEventListener("submit", e => {
-        if (grecaptcha.getResponse() === '') {
-            e.preventDefault();
-            alert('Please check the recaptcha');
-        }
-    }, false)
-});
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+
+function get_action(form) 
+{
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+         document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
+}
+		
 	</script>
 </forms>
+
+	<div class="g-recaptcha" id="rcaptcha"  data-sitekey="site key"></div>
+<span id="captcha" style="color:red" /></span> 
 
 <forms>
 <button onclick="myFunction()">Submit</button>
