@@ -186,13 +186,15 @@ forms.forEach(form=> {
 	
 <script>
 function myFunction() {
-	var answer = window.confirm("Please confirm the information you entered!");
-	if (answer) {
-   <form method="post" action="mailto:email.com?subject=subject&message=message">
-}
-else {
-    //some code
-}
+  var txt;
+  if (confirm("Please confirm your answer before submitting")) {
+    txt = "Answers submitted";
+	  Email:<input type="text" name="Email">
+	<input type="submit" name="submit" value="Submit">
+  } else {
+    txt = "submission cancelled";
+  }
+  document.getElementById("demo").innerHTML = txt;
 }
 		
 </script>
