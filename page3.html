@@ -185,10 +185,10 @@ forms.forEach(form=> {
 <script>
 function myFunction() {
   var txt;
-	  if (confirm("Press a button!")) {
-    txt = "You pressed OK!";
+	  if (confirm("Please check your answer before submitting!")) {
+    txt = "Submitted";
   } else {
-    txt = "You pressed Cancel!";
+    txt = "";
   }
   document.getElementById("demo").innerHTML = txt;
 }
