@@ -166,16 +166,19 @@ function phoneFormat(field) {
 </html>
 </forms>
 	
-<script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   } // Use `requestSubmit()` for extra features like browser input validation.
-</script>
 
-<button class="g-recaptcha"
-data-sitekey="6Lc-GkUqAAAAADYwcy_wVCCl94pEVJTJR0I5U_OT"
-data-callback='onSubmit'
-data-action='submit'>Submit</button>
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <form action="?" method="POST">
+      <div class="g-recaptcha" data-sitekey="6Lc-GkUqAAAAADYwcy_wVCCl94pEVJTJR0I5U_OT"></div>
+      <br/>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
 	
 
 <forms>
