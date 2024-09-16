@@ -165,29 +165,10 @@ function phoneFormat(field) {
 </body>
 </html>
 
-<script src='https://www.google.com/recaptcha/api.js?render=6Lc-GkUqAAAAADYwcy_wVCCl94pEVJTJR0I5U_OT'></script>
-<script>
-
-function get_action(form) 
-{
-    var v = grecaptcha.getResponse();
-    if(v.length == 0)
-    {
-        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
-        return false;
-    }
-    else
-    {
-         document.getElementById('captcha').innerHTML="Captcha completed";
-        return true; 
-    }
-}
-		
-	</script>
+ <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lc-GkUqAAAAADYwcy_wVCCl94pEVJTJR0I5U_OT"></script>
 </forms>
 
-	<div class="g-recaptcha" id="rcaptcha"  data-sitekey="6Lc-GkUqAAAAADYwcy_wVCCl94pEVJTJR0I5U_OTy"></div>
-<span id="captcha" style="color:red" /></span> 
+	
 
 <forms>
 <button onclick="myFunction()">Submit</button>
