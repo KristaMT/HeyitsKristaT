@@ -165,6 +165,20 @@ function phoneFormat(field) {
 </body>
 </html>
 
+	const forms = document.querySelectorAll('div.g-recaptcha');
+forms.forEach(form=> {
+    const formParentElement = form.parentElement;
+
+    formParentElement.addEventListener("submit", e => {
+        if (grecaptcha.getResponse() === '') {
+            e.preventDefault();
+            alert('Please check the recaptcha');
+        }
+    }, false)
+});
+</forms>
+	<forms>
+
 <button onclick="myFunction()">Submit</button>
 	
 <script>
