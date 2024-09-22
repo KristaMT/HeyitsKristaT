@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponential Growth Plotter</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #chart-container {
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exponential Growth Plotter</h1>
+    <div>
+        <label for="initial-value">Initial Value (a):</label>
+        <input type="number" id="initial-value" required>
+        <label for="growth-rate">Growth Rate (k):</label>
+        <input type="number" id="growth-rate" required>
+        <label for="t-min">t Min:</label>
+        <input type="number" id="t-min" required>
+        <label for="t-max">t Max:</label>
+        <input type="number" id="t-max" required>
+        <button id="calculate">Calculate</button>
+    </div>
+    <div id="chart-container"></div>
+
+    <script src="script.js"></script>
+</html>
+
+<script>
+// Create the Highcharts chart
+const chart = Highcharts.chart('chart-container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: "Exponential Growth Plot"
+    },
+    xAxis: {
+        title: {
+            text: 't (Time)'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'y (Value)'
+        }
+    },
+    series: [{
+        name: "y = a * e^(kt)",
+        data: []
+    }]
+});
+
+// Function to calculate the exponential growth
+function exponentialGrowth(a, k, t) {
+    return a * Math.exp(k * t);
+}
+
+// Function to handle the calculate button click
+function handleCalculate() {
+    const a = parseFloat(document.getElementById('initial-value').value);
+    const k = parseFloat(document.getElementById('growth-rate').value);
+    const tMin = parseFloat(document.getElementById('t-min').value);
+    const tMax = parseFloat(document.getElementById('t-max').value);
+
+    if (isNaN(a) || isNaN(k) || isNaN(tMin) || isNaN(tMax) || tMin >= tMax) {
+        alert('Please enter valid numbers and ensure that t Min is less than t Max.');
+        return;
+    }
+
+    // Clear the previous data
+    chart.series[0].setData([]);
+
+    // Calculate the values for the specified range of t
+    const data = [];
+    for (let t = tMin; t <= tMax; t += 0.1) {
+        const y = exponentialGrowth(a, k, t);
+        data.push([t, y]);
+    }
+
+    // Update the chart with new data
+    chart.series[0].setData(data);
+}
+
+// Event listener for button click
+document.getElementById('calculate').addEventListener('click', handleCalculate);
+
+</script>
+</body>
