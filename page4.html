@@ -98,7 +98,7 @@ function handleCalculate() {
         return;
     }
 
-    // Clear the previous data
+    // Clear
     chart.series[0].setData([]);
     document.getElementById('results').innerHTML = '';
 
@@ -115,11 +115,11 @@ function handleCalculate() {
     resultsHTML += '</table>';
     document.getElementById('results').innerHTML = resultsHTML;
 
-    // Update the chart with new data
+    // Update the chart 
     chart.series[0].setData(data);
 }
 
-// Event listener for button click
+
 document.getElementById('calculate').addEventListener('click', handleCalculate);
 </script>
 </body>
