@@ -26,7 +26,8 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <style>
         #chart-container {
-            height: 400px;
+            height: 300px;
+	    width: 500px;
             margin-top: 20px;
         }
         #results {
@@ -35,20 +36,20 @@
     </style>
 </head>
 <body>
-    <h1>Exponential Growth Plotter</h1>
+    <h1>Exponential Growth Graph</h1>
 	<h2>y = a * e^(kt)</h2>
 	<p>This page was written in HTML, Javascript and CSS, this page also uses highcharts for the graphing</p>
-    <div>
-        <label for="initial-value">Initial Value (a):</label>
+    
+        <p for="initial-value">Initial Value (a):</p>
         <input type="number" id="initial-value" required>
-        <label for="growth-rate">Growth Rate (k):</label>
+        <p for="growth-rate">Growth Rate (k):</p>
         <input type="number" id="growth-rate" required>
-        <label for="t-min">t Min:</label>
+        <p for="t-min">t Min:</p>
         <input type="number" id="t-min" required>
-        <label for="t-max">t Max:</label>
+        <p for="t-max">t Max:</p>
         <input type="number" id="t-max" required>
         <button id="calculate">Calculate</button>
-    </div>
+    
 
     <div id="chart-container"></div> 
     <div id="results"></div>
@@ -107,14 +108,14 @@ function handleCalculate() {
     const data = [];
     let resultsHTML = '<h2>Calculated Values:</h2><table border="1"><tr><th>t</th><th>y</th></tr>';
     
-    for (let t = tMin; t <= tMax; t += 1) { // Fixed interval of 1
+    for (let t = tMin; t <= tMax; t += 1) { 
         const y = exponentialGrowth(a, k, t);
         data.push([t, y]);
         resultsHTML += `<tr><td>${t}</td><td>${y.toFixed(2)}</td></tr>`;
     }
     
-  //  resultsHTML += '</table>';
-    document.getElementById('results').innerHTML = resultsHTML;
+
+    document.getElementById('results').innerHTML = resultsText;
 
     // Update the chart 
     chart.series[0].setData(data);
