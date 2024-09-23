@@ -40,10 +40,15 @@
 	<h2>y = a * e^(kt)</h2>
 	<p>This page was written in HTML, Javascript and CSS, this page also uses highcharts for the graphing</p>
         
-	<input type="number" id="initial-value" placeholder="Initial Value (a)" required>
-        <input type="number" id="growth-rate" placeholder="Growth Rate (k)" required>
-        <input type="number" id="t-min" placeholder="t Min" required>
-        <input type="number" id="t-max" placeholder="t Max" required>
+
+        <input type="number" id="initial-value" required>
+        <label for="growth-rate">Growth Rate (k):</label>
+        <input type="number" id="growth-rate" required>
+        <label for="t-min">t Min:</label>
+        <input type="number" id="t-min" required>
+        <label for="t-max">t Max:</label>
+        <input type="number" id="t-max" required>
+        <button id="calculate">Calculate</button>
  
         <button id="calculate">Calculate</button>
     
