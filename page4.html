@@ -3,31 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	 <link rel="stylesheet" href="style.css">
-    <nav class="navbar">
-	<ul>
-		<li><a href="index.html">Home</a></li>
-		<li>
-			<a href="#">Assignments</a>
-			<ul>
-				<li><a href="page2.html">Page 2-Assignment 2</a></li>
-				<li><a href="page3.html">Page 3-Assignment 3</a></li>
-				<li><a href="page4.html">Page 4-Assignment 4</a></li>
-			</ul>
-		</li>
-		<li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
-	</ul>
-</nav>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Assignment 4 -- Plotting</title>
-	<body style="background-color:#fdedec;""> 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <style>
         #chart-container {
             height: 300px;
-
             margin-top: 20px;
         }
         #results {
@@ -35,94 +16,100 @@
         }
     </style>
 </head>
-<body>
-    <h1>Exponential Growth Graph</h1>
-	<h2>y = a * e^(kt)</h2>
-	<p>This page was written in HTML, Javascript and CSS, this page also uses highcharts for the graphing</p>
-        
-
-        <input type="number" id="initial-value" required>
-        <label for="growth-rate">Growth Rate (k):</label>
-        <input type="number" id="growth-rate" required>
-        <label for="t-min">t Min:</label>
-        <input type="number" id="t-min" required>
-        <label for="t-max">t Max:</label>
-        <input type="number" id="t-max" required>
- 
-        <button id="calculate">Calculate</button>
+<body style="background-color:#fdedec;">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">Assignments</a>
+                <ul>
+                    <li><a href="page2.html">Page 2-Assignment 2</a></li>
+                    <li><a href="page3.html">Page 3-Assignment 3</a></li>
+                    <li><a href="page4.html">Page 4-Assignment 4</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
+        </ul>
+    </nav>
     
-
+    <h1>Exponential Growth Graph</h1>
+    <h2>y = a * e^(kt)</h2>
+    <p>This page was written in HTML, Javascript and CSS, this page also uses highcharts for the graphing</p>
+    
+    <input type="number" id="initial-value" placeholder="Initial Value (a)" required>
+    <input type="number" id="growth-rate" placeholder="Growth Rate (k)" required>
+    <input type="number" id="t-min" placeholder="t Min" required>
+    <input type="number" id="t-max" placeholder="t Max" required>
+    
+    <button id="calculate">Calculate</button>
+    
     <div id="chart-container"></div> 
     <div id="results"></div>
+    
+    <script>
+        // Create the Highcharts chart
+        const chart = Highcharts.chart('chart-container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: "Exponential Growth Plot"
+            },
+            xAxis: {
+                title: {
+                    text: 't (Time)'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'y (Value)'
+                }
+            },
+            series: [{
+                name: "y = a * e^(kt)",
+                data: []
+            }]
+        });
 
-    <script src="script.js"></script>
+        // Function to calculate the exponential growth
+        function exponentialGrowth(a, k, t) {
+            return a * Math.exp(k * t);
+        }
 
+        // Function to handle the calculate button click
+        function handleCalculate() {
+            const a = parseFloat(document.getElementById('initial-value').value);
+            const k = parseFloat(document.getElementById('growth-rate').value);
+            const tMin = parseFloat(document.getElementById('t-min').value);
+            const tMax = parseFloat(document.getElementById('t-max').value);
+
+            if (isNaN(a) || isNaN(k) || isNaN(tMin) || isNaN(tMax) || tMin >= tMax) {
+                alert('Please enter valid numbers and ensure that t Min is less than t Max.');
+                return;
+            }
+
+            // Clear previous data
+            chart.series[0].setData([]);
+            document.getElementById('results').innerHTML = '';
+
+            // Calculate the values for the specified range of t
+            const data = [];
+            let resultsHTML = '<h2>Calculated Values:</h2>';
+
+            for (let t = tMin; t <= tMax; t += 1) { 
+                const y = exponentialGrowth(a, k, t);
+                data.push([t, y]);
+                resultsHTML += `t = ${t}, y = ${y.toFixed(2)}<br>`;
+            }
+
+            document.getElementById('results').innerHTML = resultsHTML;
+
+            // Update the chart 
+            chart.series[0].setData(data);
+        }
+
+        document.getElementById('calculate').addEventListener('click', handleCalculate);
+    </script>
+</body>
 </html>
 
-<script>
-// Create the Highcharts chart
-const chart = Highcharts.chart('chart-container', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: "Exponential Growth Plot"
-    },
-    xAxis: {
-        title: {
-            text: 't (Time)'
-        }
-    },
-    yAxis: {
-        title: {
-            text: 'y (Value)'
-        }
-    },
-    series: [{
-        name: "y = a * e^(kt)",
-        data: []
-    }]
-});
-
-// Function to calculate the exponential growth
-function exponentialGrowth(a, k, t) {
-    return a * Math.exp(k * t);
-}
-
-// Function to handle the calculate button click
-function handleCalculate() {
-    const a = parseFloat(document.getElementById('initial-value').value);
-    const k = parseFloat(document.getElementById('growth-rate').value);
-    const tMin = parseFloat(document.getElementById('t-min').value);
-    const tMax = parseFloat(document.getElementById('t-max').value);
-
-    if (isNaN(a) || isNaN(k) || isNaN(tMin) || isNaN(tMax) || tMin >= tMax) {
-        alert('Please enter valid numbers and ensure that t Min is less than t Max.');
-        return;
-    }
-
-    // Clear
-    chart.series[0].setData([]);
-    document.getElementById('results').innerHTML = '';
-
-    // Calculate the values for the specified range of t
-    const data = [];
-    let resultsHTML = '<h2>Calculated Values:</h2><table border="1"><tr><th>t</th><th>y</th></tr>';
-    
-    for (let t = tMin; t <= tMax; t += 1) { 
-        const y = exponentialGrowth(a, k, t);
-        data.push([t, y]);
-        resultsHTML += `<tr><td>${t}</td><td>${y.toFixed(2)}</td></tr>`;
-    }
-    
-
-    document.getElementById('results').innerHTML = resultsText;
-
-    // Update the chart 
-    chart.series[0].setData(data);
-}
-
-
-document.getElementById('calculate').addEventListener('click', handleCalculate);
-</script>
-</body>
