@@ -47,7 +47,7 @@
     <div id="results"></div>
     
     <script>
-        // Create the Highcharts chart
+
         const chart = Highcharts.chart('chart-container', {
             chart: {
                 type: 'line'
@@ -71,12 +71,11 @@
             }]
         });
 
-        // Function to calculate the exponential growth
+
         function exponentialGrowth(a, k, t) {
             return a * Math.exp(k * t);
         }
 
-        // Function to handle the calculate button click
         function handleCalculate() {
             const a = parseFloat(document.getElementById('initial-value').value);
             const k = parseFloat(document.getElementById('growth-rate').value);
@@ -88,11 +87,10 @@
                 return;
             }
 
-            // Clear previous data
             chart.series[0].setData([]);
             document.getElementById('results').innerHTML = '';
 
-            // Calculate the values for the specified range of t
+      
             const data = [];
             let resultsHTML = '<h2>Calculated Values:</h2>';
 
@@ -104,7 +102,6 @@
 
             document.getElementById('results').innerHTML = resultsHTML;
 
-            // Update the chart 
             chart.series[0].setData(data);
         }
 
