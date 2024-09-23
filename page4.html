@@ -50,7 +50,7 @@
         <button id="calculate">Calculate</button>
     </div>
 
-    /* <div id="chart-container"></div> */
+    <div id="chart-container"></div> 
     <div id="results"></div>
 
     <script src="script.js"></script>
@@ -113,7 +113,7 @@ function handleCalculate() {
         resultsHTML += `<tr><td>${t}</td><td>${y.toFixed(2)}</td></tr>`;
     }
     
-    resultsHTML += '</table>';
+  //  resultsHTML += '</table>';
     document.getElementById('results').innerHTML = resultsHTML;
 
     // Update the chart 
