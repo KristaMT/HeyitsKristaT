@@ -56,12 +56,10 @@
         let t = 0;   // Angle parameter
         let drawing = false;
         let interval;
-        const step = 0.2; // Increment for t
+        const step = 0.01; // Increment for t (slower drawing)
         const angleOffset = 0.1; // Small adjustment for overlapping effect
 
         function drawSpirograph() {
-            if (!drawing) return;
-
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
@@ -71,19 +69,19 @@
                 (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
             );
 
-            // Draw multiple cycles
-            while (t < 10 * Math.PI) {
+            // Draw multiple cycles until t reaches a limit
+            for (let i = 0; i < 100; i++) { // Draw 100 segments per interval
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
-                t += step;
+                t += step; // Increment t for gradual drawing
             }
 
             ctx.strokeStyle = 'blue'; 
             ctx.stroke();
             ctx.restore();
 
-            // Slightly adjust the parameters for the next iteration
+            // Adjust for overlapping effect
             t += angleOffset; // Increment angle for overlapping effect
         }
 
@@ -91,12 +89,10 @@
             drawing = !drawing;
             if (drawing) {
                 document.getElementById('toggleButton').innerText = 'Stop';
-                interval = setInterval(drawSpirograph, 20); // Keep interval for drawing
+                interval = setInterval(drawSpirograph, 50); // Adjust interval for slower drawing
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
-                // Reset t to start over when stopped
-                t = 0; // You can comment this out if you want to continue from where it stopped
             }
         }
 
@@ -104,4 +100,3 @@
     </script>
 </body>
 </html>
-
