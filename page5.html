@@ -63,7 +63,6 @@
         function drawSpirograph() {
             if (!drawing) return;
 
-            ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
             ctx.beginPath();
@@ -82,7 +81,6 @@
 
             ctx.strokeStyle = 'blue'; 
             ctx.stroke();
-            ctx.restore();
         }
 
         // Toggle drawing state
