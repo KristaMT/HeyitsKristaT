@@ -1,87 +1,102 @@
 <!DOCTYPE html>
-<html>
-<body>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<body style="background-color:#fdedec;"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	  <link rel="stylesheet" href="style.css">
+    <title>Assignment 5 -- Spirograph</title>
+    <style>
+        body {
+            background-color: #fdedec;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 25px auto;
+        }
+        .button-container {
+            margin-top: 25px; 
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style-type: none;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            color: #000;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
     <nav class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
             <li>
                 <a href="#">Assignments</a>
-			<ul>
-				<li><a href="page2.html">Page 2-Assignment 2</a></li>
-				<li><a href="page3.html">Page 3-Assignment 3</a></li>
-				<li><a href="page4.html">Page 4-Assignment 4</a></li>
-				<li><a href="page5.html">Page 5-Assignment 5</a></li>
-			</ul>
+                <ul>
+                    <li><a href="page2.html">Page 2-Assignment 2</a></li>
+                    <li><a href="page3.html">Page 3-Assignment 3</a></li>
+                    <li><a href="page4.html">Page 4-Assignment 4</a></li>
+                    <li><a href="page5.html">Page 5-Assignment 5</a></li>
+                </ul>
             </li>
             <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
         </ul>
     </nav>
-	
-    <title>Assignment 5 -- Spirograph</title>
-	<p>This page is written in HTML, CSS, and javascript</p>
-	<h1 style="margin: 0 auto; width: fit-content;">This is my Spirograph</h1>
-    <style>
-        canvas {
-            border: 1px solid black;
-            display: block;
-             margin: 25px auto 0;
-        }
-	
-	.button-container {
-            text-align: center;
-            margin-top: 25px; 
-        }
-	    
-    </style>
-</head>
-<body>
+
+    <p>This page is written in HTML, CSS, and JavaScript</p>
+    <h1>This is my Spirograph</h1>
+
     <canvas id="spirograph" width="600" height="600"></canvas>
 
-<div class="button-container">
+    <div class="button-container">
         <button id="toggleButton">Start</button>
     </div>
 
     <script>
-	
         const canvas = document.getElementById('spirograph');
         const ctx = canvas.getContext('2d');
 
         let R = 150; // Radius of the outer circle
-        let r = 25  // Radius of the inner circle
+        let r = 25;  // Radius of the inner circle
         let O = 45;  // Offset
         let t = 0;   // Angle parameter
         let drawing = false;
         let interval;
+        const step = 0.01; // Increment for t
 
         function drawSpirograph() {
             if (!drawing) return;
 
-        ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
+            ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height); // Clear canvas
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
-        ctx.beginPath();
-        ctx.moveTo(
-            (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t),
-            (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
-        );
+            ctx.beginPath();
+            ctx.moveTo(
+                (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t),
+                (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
+            );
 
-        while (t < 10 * Math.PI) { // Draw multiple cycles
-            const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
-            const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
-            ctx.lineTo(x, y);
-            t += step;
+            while (t < 10 * Math.PI) { // Draw multiple cycles
+                const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
+                const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
+                ctx.lineTo(x, y);
+                t += step;
+            }
+
+            ctx.strokeStyle = 'blue'; 
+            ctx.stroke();
+            ctx.restore();
         }
-
-        ctx.strokeStyle = 'blue'; 
-        ctx.stroke();
 
         function toggleDrawing() {
             drawing = !drawing;
@@ -91,6 +106,7 @@
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
+                t = 0; // Reset t to start over when stopped
             }
         }
 
