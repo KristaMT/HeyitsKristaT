@@ -56,10 +56,12 @@
         let t = 0;   // Angle parameter
         let drawing = false;
         let interval;
-        const step = 0.01; // Increment for t
-        const angleOffset = 0.1; // Small adjustment for overlapping effect
+        const step = 0.1; // Increment for t
+        const angleOffset = 0.05; // Small adjustment for overlapping effect
 
         function drawSpirograph() {
+            if (!drawing) return;
+
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
@@ -93,6 +95,8 @@
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
+                // Reset t to start over when stopped
+                t = 0; // You can comment this out if you want to continue from where it stopped
             }
         }
 
@@ -100,3 +104,4 @@
     </script>
 </body>
 </html>
+
