@@ -47,7 +47,7 @@
         <button id="toggleButton">Start</button>
     </div>
 
-    <script>
+      <script>
         const canvas = document.getElementById('spirograph');
         const ctx = canvas.getContext('2d');
 
@@ -58,11 +58,12 @@
         let drawing = false;
         let interval;
         const step = 0.01; // Increment for t
+        const angleOffset = 0.02; // Small adjustment for overlapping effect
 
-        // Function to draw the Spirograph
         function drawSpirograph() {
             if (!drawing) return;
 
+            ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
             ctx.beginPath();
@@ -76,14 +77,17 @@
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
-                t += 1;
+                t += step;
             }
 
             ctx.strokeStyle = 'blue'; 
             ctx.stroke();
+            ctx.restore();
+
+            // Slightly adjust the parameters for the next iteration
+            t += angleOffset; // Increment angle for overlapping effect
         }
 
-        // Toggle drawing state
         function toggleDrawing() {
             drawing = !drawing;
             if (drawing) {
@@ -92,10 +96,10 @@
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
+                t = 0; // Reset t to start over when stopped
             }
         }
 
-        // Event listener for the button
         document.getElementById('toggleButton').addEventListener('click', toggleDrawing);
     </script>
 </body>
