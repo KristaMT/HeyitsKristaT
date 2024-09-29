@@ -65,14 +65,23 @@
         function drawSpirograph() {
             if (!drawing) return;
 
+        ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
+
+        ctx.beginPath();
+        ctx.moveTo(
+            (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t),
+            (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
+        );
+
+        while (t < 10 * Math.PI) { // Draw multiple cycles
             const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
             const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
-
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(x + canvas.width / 2, y + canvas.height / 2, 1, 1);
-
-            t += 0.1; 
+            ctx.lineTo(x, y);
+            t += step;
         }
+
+        ctx.strokeStyle = 'blue'; 
+        ctx.stroke();
 
         function toggleDrawing() {
             drawing = !drawing;
