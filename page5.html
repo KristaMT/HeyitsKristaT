@@ -40,4 +40,49 @@
     <p>This page is written in HTML, CSS, and JavaScript</p>
     <h1>This is my Spirograph</h1>
 
-    <canvas id="spirograph" widt
+    <canvas id="spirograph" width="600" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('spirograph');
+        const ctx = canvas.getContext('2d');
+
+        let R = 150; // Radius of the outer circle
+        let r = 25;  // Radius of the inner circle
+        let O = 45;  // Offset
+        let t = 0;   // Angle parameter
+        const step = 0.01; // Increment for t
+        const angleOffset = 0.1; // Small adjustment for overlapping effect
+
+        function drawSpirograph() {
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
+
+            ctx.beginPath();
+            ctx.moveTo(
+                (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t),
+                (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
+            );
+
+            // Draw continuously
+            const cycles = 100; // Number of lines to draw in one interval
+            for (let i = 0; i < cycles; i++) {
+                const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
+                const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
+                ctx.lineTo(x, y);
+                t += step; // Increment t for gradual drawing
+            }
+
+            ctx.strokeStyle = 'blue'; 
+            ctx.stroke();
+            ctx.restore();
+
+            // Adjust for overlapping effect
+            t += angleOffset; // Increment angle for overlapping effect
+        }
+
+        // Start drawing immediately
+        setInterval(drawSpirograph, 20); // Keep drawing at set interval
+    </script>
+</body>
+</html>
+
