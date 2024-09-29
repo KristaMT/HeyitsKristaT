@@ -70,7 +70,7 @@
             );
 
             // Draw multiple cycles until t reaches a limit
-            for (let i = 0; i < 100; i++) { // Draw 100 segments per interval
+            for (let i = 0; i < cycles; i++) { 
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
