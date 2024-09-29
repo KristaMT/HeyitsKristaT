@@ -56,10 +56,12 @@
         let t = 0;   // Angle parameter
         let drawing = false;
         let interval;
-        const step = 0.01; // Increment for t (slower drawing)
-        const angleOffset = 0.5; // Small adjustment for overlapping effect
+        const step = 0.01; // Increment for t
+        const angleOffset = 0.1; // Small adjustment for overlapping effect
 
         function drawSpirograph() {
+            if (!drawing) return;
+
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
@@ -69,9 +71,9 @@
                 (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
             );
 
-            // Draw multiple cycles until t reaches a limit
-            const cycles = 10;
-            for (let i = 0; i < cycles; i++) { 
+            // Draw continuously
+            const cycles = 100; // Number of lines to draw in one interval
+            for (let i = 0; i < cycles; i++) {
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
@@ -90,7 +92,7 @@
             drawing = !drawing;
             if (drawing) {
                 document.getElementById('toggleButton').innerText = 'Stop';
-                interval = setInterval(drawSpirograph, 50); // Adjust interval for slower drawing
+                interval = setInterval(drawSpirograph, 20); // Keep drawing at set interval
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
