@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <link rel="stylesheet" href="style.css">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	  <link rel="stylesheet" href="style.css">
     <nav class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -17,7 +24,55 @@
             <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
         </ul>
     </nav>
-	<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+	
+    <title>Assignment 5 -- Spirograph</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="spirograph" width="600" height="600"></canvas>
+    <button id="toggleButton">Start</button>
+
+    <script>
+        const canvas = document.getElementById('spirograph');
+        const ctx = canvas.getContext('2d');
+
+        let R = 100; // Radius of the outer circle
+        let r = 50;  // Radius of the inner circle
+        let O = 25;  // Offset
+        let t = 0;   // Angle parameter
+        let drawing = false;
+        let interval;
+
+        function drawSpirograph() {
+            if (!drawing) return;
+
+            const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
+            const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x + canvas.width / 2, y + canvas.height / 2, 1, 1);
+
+            t += 0.05; // Increment the angle
+        }
+
+        function toggleDrawing() {
+            drawing = !drawing;
+            if (drawing) {
+                document.getElementById('toggleButton').innerText = 'Stop';
+                interval = setInterval(drawSpirograph, 20);
+            } else {
+                document.getElementById('toggleButton').innerText = 'Start';
+                clearInterval(interval);
+            }
+        }
+
+        document.getElementById('toggleButton').addEventListener('click', toggleDrawing);
+    </script>
 </body>
 </html>
