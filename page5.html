@@ -58,7 +58,7 @@
         let drawing = false;
         let interval;
         const step = 0.01; // Increment for t
-        const angleOffset = 0.02; // Small adjustment for overlapping effect
+        const angleOffset = 0.1; // Small adjustment for overlapping effect
 
         function drawSpirograph() {
             if (!drawing) return;
@@ -92,7 +92,7 @@
             drawing = !drawing;
             if (drawing) {
                 document.getElementById('toggleButton').innerText = 'Stop';
-                interval = setInterval(drawSpirograph, 20);
+                interval = setInterval(drawSpirograph);
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
