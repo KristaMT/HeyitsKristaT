@@ -76,7 +76,7 @@
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
-                t += step;
+                t += 1;
             }
 
             ctx.strokeStyle = 'blue'; 
