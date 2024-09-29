@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Assignment 5 -- Spirograph</title>
     <nav class="navbar">
         <ul>
@@ -34,11 +34,10 @@
         .button-container {
             margin-top: 25px; 
         }
-
     </style>
 </head>
 <body>
- <p>This page is written in HTML, CSS, and JavaScript</p>
+    <p>This page is written in HTML, CSS, and JavaScript</p>
     <h1>This is my Spirograph</h1>
 
     <canvas id="spirograph" width="600" height="600"></canvas>
@@ -47,7 +46,7 @@
         <button id="toggleButton">Start</button>
     </div>
 
-      <script>
+    <script>
         const canvas = document.getElementById('spirograph');
         const ctx = canvas.getContext('2d');
 
@@ -61,8 +60,6 @@
         const angleOffset = 0.1; // Small adjustment for overlapping effect
 
         function drawSpirograph() {
-            if (!drawing) return;
-
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
@@ -92,11 +89,10 @@
             drawing = !drawing;
             if (drawing) {
                 document.getElementById('toggleButton').innerText = 'Stop';
-                interval = setInterval(drawSpirograph);
+                interval = setInterval(drawSpirograph, 20); // Keep interval for drawing
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
-                t = 0; // Reset t to start over when stopped
             }
         }
 
