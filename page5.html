@@ -38,8 +38,7 @@
     </style>
 </head>
 <body>
-
-    <p>This page is written in HTML, CSS, and JavaScript</p>
+ <p>This page is written in HTML, CSS, and JavaScript</p>
     <h1>This is my Spirograph</h1>
 
     <canvas id="spirograph" width="600" height="600"></canvas>
@@ -60,10 +59,10 @@
         let interval;
         const step = 0.01; // Increment for t
 
+        // Function to draw the Spirograph
         function drawSpirograph() {
             if (!drawing) return;
 
-            ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height); // Clear canvas
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
 
@@ -73,7 +72,8 @@
                 (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t)
             );
 
-            while (t < 10 * Math.PI) { // Draw multiple cycles
+            // Draw multiple cycles
+            while (t < 10 * Math.PI) {
                 const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
                 const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
                 ctx.lineTo(x, y);
@@ -85,6 +85,7 @@
             ctx.restore();
         }
 
+        // Toggle drawing state
         function toggleDrawing() {
             drawing = !drawing;
             if (drawing) {
@@ -93,10 +94,10 @@
             } else {
                 document.getElementById('toggleButton').innerText = 'Start';
                 clearInterval(interval);
-                t = 0; // Reset t to start over when stopped
             }
         }
 
+        // Event listener for the button
         document.getElementById('toggleButton').addEventListener('click', toggleDrawing);
     </script>
 </body>
