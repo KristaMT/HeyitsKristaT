@@ -46,7 +46,7 @@
 
 <script>
 const R = Math.floor(Math.random() * 100);
-const r = Math.floor(Math.random() * 70);
+const r = Math.floor(Math.random() * 60);
 const O = Math.floor(Math.random() * 100);
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -82,7 +82,7 @@ function doDrawing() {
 
 // Function to calculate the next point and draw it
 function drawCircle() {
-    t += 0.1; // Increment t
+    t += 0.2; // Increment t
 
     const xCenter = canvas.width / 2;
     const yCenter = canvas.height / 2;
