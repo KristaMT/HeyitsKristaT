@@ -37,56 +37,61 @@
     </style>
 </head>
 <body>
-    <p>This page is written in HTML, CSS, and JavaScript</p>
-    <h1>This is my Spirograph</h1>
 
-    <canvas id="spirograph" width="600" height="600"></canvas>
+<button onclick="doDrawing();">Start Spirograph</button>
+<br>
+<canvas id="myCanvas" width="500" height="500">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
 
-    <div class="button-container">
-        <button id="startButton">Start Drawing</button>
-    </div>
+<script>
+const R = Math.floor(Math.random() * 100);
+const r = Math.floor(Math.random() * 70);
+const O = Math.floor(Math.random() * 100);
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 
-    <script>
-        const canvas = document.getElementById('spirograph');
-        const ctx = canvas.getContext('2d');
+let t = 0;  // Parameter for drawing
 
-        let R = 150; // Radius of the outer circle
-        let r = 25;  // Radius of the inner circle
-        let O = 45;  // Offset
-        let t = 0;   // Angle parameter
-        const step = 0.01; // Increment for t
-        let drawingInterval;
-        
-        function drawSpirograph() {
-            ctx.save();
-            ctx.translate(canvas.width / 2, canvas.height / 2); // Move origin to center of canvas
-            
-            const x = (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
-            const y = (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
-            
-            ctx.beginPath();
-            ctx.lineTo(x, y);
-            ctx.strokeStyle = 'blue'; 
-            ctx.stroke();
-            ctx.restore();
+// Function to start the drawing process
+function doDrawing() {
+    t = 0; // Reset t for each drawing
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    const maxIterations = 1080; // Number of iterations
+    let iterations = 0; // Counter for iterations
 
-            // Increment t for the next point
-            t += step; // Gradually increase the angle for drawing
-            
-            // Restart drawing when t exceeds the maximum
-            if (t > 10 * Math.PI) {
-                t = 0; // Reset to start again
-            }
+    const xCenter = canvas.width / 2;
+    const yCenter = canvas.height / 2;
+
+    // Initial position of the pen
+    let x = xCenter + (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
+    let y = yCenter + (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
+
+    ctx.beginPath();
+    ctx.moveTo(x, y); // Move to the initial position
+
+    const interval = setInterval(function() {
+        if (iterations >= maxIterations) {
+            clearInterval(interval); // Stop after max iterations
+            return;
         }
+        drawCircle(); // Draw the next segment
+        iterations++;
+    }, 20); // Draw every 20 ms
+}
 
-        function startDrawing() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before starting
-            t = 0; // Reset t to start from the beginning
-            drawingInterval = setInterval(drawSpirograph, 20); // Start drawing at set interval
-        }
+// Function to calculate the next point and draw it
+function drawCircle() {
+    t += 0.1; // Increment t
 
-        // Add event listener to start button
-        document.getElementById('startButton').addEventListener('click', startDrawing);
-    </script>
+    const xCenter = canvas.width / 2;
+    const yCenter = canvas.height / 2;
+    const x = xCenter + (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
+    const y = yCenter + (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
+
+    ctx.lineTo(x, y); // Draw the line to the new point
+    ctx.stroke(); // Render the line
+}
+</script>
 </body>
 </html>
