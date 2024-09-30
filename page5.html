@@ -32,68 +32,68 @@
 </div>
 
 <script>
-const R = Math.floor(Math.random() * 100) + 30; // Increased minimum radius
-const r = Math.floor(Math.random() * 70) + 10;  // Increased minimum radius
-const O = Math.floor(Math.random() * 30); // Offset
+const R = Math.floor(Math.random() * 100) + 30; 
+const r = Math.floor(Math.random() * 70) + 10;  
+const O = Math.floor(Math.random() * 30); 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
-let t = 0;  // Parameter for drawing
-let drawing = false; // Control variable for drawing
-let interval; // Variable to hold the interval
+let t = 0;  
+let drawing = false; 
+let interval; 
 
-// Function to start the drawing process
+
 function doDrawing() {
-    if (drawing) return; // Prevent starting a new drawing if already drawing
+    if (drawing) return; 
 
-    t = 0; // Reset t for each drawing
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-    const maxIterations = 2000; // Increased number of iterations for more loops
-    let iterations = 0; // Counter for iterations
+    t = 0; 
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    const maxIterations = 2500; 
+    let iterations = 0; 
 
     const xCenter = canvas.width / 2;
     const yCenter = canvas.height / 2;
 
-    // Initial position of the pen
+    
     let x = xCenter + (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
     let y = yCenter + (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
 
     ctx.beginPath();
-    ctx.moveTo(x, y); // Move to the initial position
+    ctx.moveTo(x, y); 
 
-    drawing = true; // Set drawing to true
+    drawing = true; 
 
     interval = setInterval(function() {
         if (iterations >= maxIterations) {
-            clearInterval(interval); // Stop after max iterations
-            drawing = false; // Reset drawing state
+            clearInterval(interval); 
+            drawing = false; 
             return;
         }
-        drawCircle(); // Draw the next segment
+        drawCircle(); 
         iterations++;
-    }, 10); // Draw every 10 ms for smoother drawing
+    }, 10); 
 }
 
-// Function to calculate the next point and draw it
+
 function drawCircle() {
-    t += 0.05; // Increment t more slowly for finer detail
+    t += 0.05; 
 
     const xCenter = canvas.width / 2;
     const yCenter = canvas.height / 2;
     const x = xCenter + (R + r) * Math.cos(t) - (r + O) * Math.cos(((R + r) / r) * t);
     const y = yCenter + (R + r) * Math.sin(t) - (r + O) * Math.sin(((R + r) / r) * t);
 
-    ctx.lineTo(x, y); // Draw the line to the new point
-    ctx.stroke(); // Render the line
+    ctx.lineTo(x, y);
+    ctx.stroke();
 }
 
-// Function to stop the drawing
+
 function stopDrawing() {
-    clearInterval(interval); // Clear the interval
-    drawing = false; // Reset drawing state
+    clearInterval(interval); 
+    drawing = false; 
 }
 
-// Event listeners for the buttons
+
 document.getElementById('startButton').addEventListener('click', doDrawing);
 document.getElementById('stopButton').addEventListener('click', stopDrawing);
 </script>
