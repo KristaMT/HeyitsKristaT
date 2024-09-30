@@ -3,61 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Assignment 5 -- Spirograph</title>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="#">Assignments</a>
-                <ul>
-                    <li><a href="page2.html">Page 2-Assignment 2</a></li>
-                    <li><a href="page3.html">Page 3-Assignment 3</a></li>
-                    <li><a href="page4.html">Page 4-Assignment 4</a></li>
-                    <li><a href="page5.html">Page 5-Assignment 5</a></li>
-                </ul>
-            </li>
-            <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
-        </ul>
-    </nav>
-    
+    <title>Spirograph Drawing</title>
     <style>
-        body {
-            background-color: #fdedec;
-            text-align: center;
-        }
         canvas {
             border: 1px solid black;
             display: block;
-            margin: 25px auto;
+            margin: auto;
         }
-        .button-container {
-            margin-top: 25px; 
+        #controlButtons {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+        }
+        button {
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
-<button onclick="doDrawing();">Start Spirograph</button>
-<br>
 <canvas id="myCanvas" width="500" height="500">
     Your browser does not support the HTML5 canvas tag.
 </canvas>
 
+<div id="controlButtons">
+    <button id="startButton">Start Spirograph</button>
+    <button id="stopButton">Stop Drawing</button>
+</div>
+
 <script>
-const R = Math.floor(Math.random() * 100);
-const r = Math.floor(Math.random() * 60);
-const O = Math.floor(Math.random() * 100);
+const R = Math.floor(Math.random() * 100) + 30; // Increased minimum radius
+const r = Math.floor(Math.random() * 70) + 10;  // Increased minimum radius
+const O = Math.floor(Math.random() * 30); // Offset
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 let t = 0;  // Parameter for drawing
+let drawing = false; // Control variable for drawing
+let interval; // Variable to hold the interval
 
 // Function to start the drawing process
 function doDrawing() {
+    if (drawing) return; // Prevent starting a new drawing if already drawing
+
     t = 0; // Reset t for each drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-    const maxIterations = 1080; // Number of iterations
+    const maxIterations = 2000; // Increased number of iterations for more loops
     let iterations = 0; // Counter for iterations
 
     const xCenter = canvas.width / 2;
@@ -70,19 +61,22 @@ function doDrawing() {
     ctx.beginPath();
     ctx.moveTo(x, y); // Move to the initial position
 
-    const interval = setInterval(function() {
+    drawing = true; // Set drawing to true
+
+    interval = setInterval(function() {
         if (iterations >= maxIterations) {
             clearInterval(interval); // Stop after max iterations
+            drawing = false; // Reset drawing state
             return;
         }
         drawCircle(); // Draw the next segment
         iterations++;
-    }, 20); // Draw every 20 ms
+    }, 10); // Draw every 10 ms for smoother drawing
 }
 
 // Function to calculate the next point and draw it
 function drawCircle() {
-    t += 0.2; // Increment t
+    t += 0.05; // Increment t more slowly for finer detail
 
     const xCenter = canvas.width / 2;
     const yCenter = canvas.height / 2;
@@ -92,6 +86,16 @@ function drawCircle() {
     ctx.lineTo(x, y); // Draw the line to the new point
     ctx.stroke(); // Render the line
 }
+
+// Function to stop the drawing
+function stopDrawing() {
+    clearInterval(interval); // Clear the interval
+    drawing = false; // Reset drawing state
+}
+
+// Event listeners for the buttons
+document.getElementById('startButton').addEventListener('click', doDrawing);
+document.getElementById('stopButton').addEventListener('click', stopDrawing);
 </script>
 </body>
 </html>
