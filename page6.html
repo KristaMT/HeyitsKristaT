@@ -21,9 +21,18 @@
     <title>Assignment 6 - JSON Data</title>
 </head>
 <body>
-    <div id="dataDisplay">
-        <!-- JSON data will be displayed here -->
-    </div>
+    <h1>User Information</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="dataDisplay">
+            <!-- JSON data will be displayed here -->
+        </tbody>
+    </table>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch('data.json')
@@ -31,23 +40,20 @@
                 .then(data => {
                     const dataDisplay = document.getElementById("dataDisplay");
 
-                    // Create HTML elements to display the JSON data
-                    const nameElement = document.createElement("p");
-                    nameElement.textContent = "Name: " + data.name;
+                    // Create table rows to display the JSON data
+                    const nameRow = document.createElement("tr");
+                    nameRow.innerHTML = `<td>Name</td><td>${data.name}</td>`;
+                    dataDisplay.appendChild(nameRow);
 
-                    const ageElement = document.createElement("p");
-                    ageElement.textContent = "Age: " + data.age;
+                    const ageRow = document.createElement("tr");
+                    ageRow.innerHTML = `<td>Age</td><td>${data.age}</td>`;
+                    dataDisplay.appendChild(ageRow);
 
-                    const cityElement = document.createElement("p");
-                    cityElement.textContent = "City: " + data.city;
-
-                    // Append the elements to the "dataDisplay" div
-                    dataDisplay.appendChild(nameElement);
-                    dataDisplay.appendChild(ageElement);
-                    dataDisplay.appendChild(cityElement);
+                    const cityRow = document.createElement("tr");
+                    cityRow.innerHTML = `<td>City</td><td>${data.city}</td>`;
+                    dataDisplay.appendChild(cityRow);
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
         });
     </script>
-</body>
 </html>
