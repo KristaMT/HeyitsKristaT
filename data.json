@@ -1,7 +1,36 @@
 {
-    "name": "Krista :)",
-    "age": 25,
-    "favorite food": "Apples",
-    "favorite game": "Pokemon",
-    "dream job": "Cyber security"
+    "pokemon_games": [
+        {
+            "title": "Pokémon Red and Green",
+            "release_date": "February 27, 1996"
+        },
+        {
+            "title": "Pokémon Gold and Silver",
+            "release_date": "November 21, 1999"
+        },
+        {
+            "title": "Pokémon Ruby and Sapphire",
+            "release_date": "November 21, 2002"
+        },
+        {
+            "title": "Pokémon Diamond and Pearl",
+            "release_date": "September 28, 2006"
+        },
+        {
+            "title": "Pokémon Black and White",
+            "release_date": "September 18, 2010"
+        },
+        {
+            "title": "Pokémon X and Y",
+            "release_date": "October 12, 2013"
+        },
+        {
+            "title": "Pokémon Sun and Moon",
+            "release_date": "November 18, 2016"
+        },
+        {
+            "title": "Pokémon Sword and Shield",
+            "release_date": "November 15, 2019"
+        }
+    ]
 }
