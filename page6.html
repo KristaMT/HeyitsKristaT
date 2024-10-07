@@ -33,13 +33,13 @@
             <!-- JSON data will be displayed here -->
         </tbody>
     </table>
+	<p>Things about me!</p>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch('data.json')
                 .then(response => response.json())
                 .then(data => {
                     const dataDisplay = document.getElementById("dataDisplay");
-
                     // Create table rows to display the JSON data
                     const nameRow = document.createElement("tr");
                     nameRow.innerHTML = `<td>Name</td><td>${data.name}</td>`;
@@ -49,7 +49,7 @@
                     ageRow.innerHTML = `<td>Age</td><td>${data.age}</td>`;
                     dataDisplay.appendChild(ageRow);
 
-                    const cityRow = document.createElement("tr");
+                    const favoriteFoodrow = document.createElement("tr");
                     cityRow.innerHTML = `<td>City</td><td>${data.city}</td>`;
                     dataDisplay.appendChild(cityRow);
                 })
