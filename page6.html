@@ -24,7 +24,7 @@
         </ul>
     </nav>
     <body style="background-color:#fdedec;""> 
-    <h1>Things about me!</h1>
+    <h1>Pokemon games in order of release! :)</h1>
 
     <table>
         <thead>
@@ -34,11 +34,8 @@
             </tr>
         </thead>
         <tbody id="dataDisplay">
-            <!-- JSON data will be displayed here -->
         </tbody>
     </table>
-    
-    
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -47,30 +44,21 @@
                 .then(data => {
                     const dataDisplay = document.getElementById("dataDisplay");
                     
-                    // Create table rows to display the JSON data
-                    const nameRow = document.createElement("tr");
-                    nameRow.innerHTML = `<td>Name</td><td>${data.name}</td>`;
-                    dataDisplay.appendChild(nameRow);
+                    const gamesHeadingRow = document.createElement("tr");
+                    gamesHeadingRow.innerHTML = `<td colspan="2"><strong>Pokémon Games</strong></td>`;
+                    dataDisplay.appendChild(gamesHeadingRow);
 
-                    const ageRow = document.createElement("tr");
-                    ageRow.innerHTML = `<td>Age</td><td>${data.age}</td>`;
-                    dataDisplay.appendChild(ageRow);
-
-                    const favoriteFoodRow = document.createElement("tr");
-                    favoriteFoodRow.innerHTML = `<td>Favorite Food</td><td>${data["favorite food"]}</td>`;
-                    dataDisplay.appendChild(favoriteFoodRow);
-
-                    const favoriteGameRow = document.createElement("tr");
-                    favoriteGameRow.innerHTML = `<td>Favorite Game</td><td>${data["favorite game"]}</td>`;
-                    dataDisplay.appendChild(favoriteGameRow);
-
-                    const dreamJobRow = document.createElement("tr");
-                    dreamJobRow.innerHTML = `<td>Dream Job</td><td>${data["dream job"]}</td>`;
-                    dataDisplay.appendChild(dreamJobRow);
+                    data.pokemon_games.forEach(game => {
+                        const gameRow = document.createElement("tr");
+                        gameRow.innerHTML = `<td>${game.title}</td><td>${game.release_date}</td>`;
+                        dataDisplay.appendChild(gameRow);
+                    });
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
         });
     </script>
+</body>
+</html>
 </body>
 </html>
 
