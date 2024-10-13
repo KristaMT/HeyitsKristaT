@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .card-area {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 600px;
+        }
+
+        .card {
+            width: 60px;
+            height: 90px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background-size: cover;
+        }
+
+        .card.dragging {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+
+        .discard-area {
+            width: 200px;
+            height: 300px;
+            border: 2px dashed #bbb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <button id="dealButton">Deal</button>
+        <div class="card-area" id="cardArea"></div>
+        <div class="discard-area" id="discardArea">
+            <h3>Discard Pile</h3>
+        </div>
+    </div>
+    <script>
+        const cardArea = document.getElementById('cardArea');
+        const discardArea = document.getElementById('discardArea');
+        const dealButton = document.getElementById('dealButton');
+        let deck = [];
+        let dealtCards = [];
+
+        // Generate a deck of cards
+        function generateDeck() {
+            const suits = ['spades', 'clubs', 'hearts', 'diamonds'];
+            const values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+            
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push(`${value}_of_${suit}`);
+                }
+            }
+
+            // Adding jokers
+            deck.push('black_joker');
+            deck.push('red_joker');
+        }
+
+        // Shuffle the deck
+        function shuffleDeck() {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        // Deal cards to the screen
+        function dealCards() {
+            if (deck.length === 0) {
+                alert("No more cards in the deck!");
+                return;
+            }
+
+            // Clear previously dealt cards
+            cardArea.innerHTML = '';
+
+            // Deal 5 cards
+            for (let i = 0; i < 5; i++) {
+                if (deck.length === 0) break;
+
+                const cardId = deck.pop();
+                dealtCards.push(cardId);
+                const cardElement = createCardElement(cardId);
+                cardArea.appendChild(cardElement);
+            }
+        }
+
+        // Create a card element
+        function createCardElement(cardId) {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.draggable = true;
+            cardElement.id = cardId;
+            cardElement.style.backgroundImage = `url('cards/${cardId}.png')`; // Use .png
+            
+            cardElement.addEventListener('dragstart', dragStart);
+            cardElement.addEventListener('dragend', dragEnd);
+
+            return cardElement;
+        }
+
+        // Drag and drop functionality
+        function dragStart(event) {
+            event.target.classList.add('dragging');
+            event.dataTransfer.setData('text/plain', event.target.id);
+        }
+
+        function dragEnd(event) {
+            event.target.classList.remove('dragging');
+        }
+
+        discardArea.addEventListener('dragover', event => {
+            event.preventDefault(); // Allow drop
+        });
+
+        discardArea.addEventListener('drop', event => {
+            event.preventDefault();
+            const cardId = event.dataTransfer.getData('text/plain');
+            const cardElement = document.getElementById(cardId);
+            discardArea.appendChild(cardElement); // Move card to discard area
+        });
+
+        // Initialize the deck and add event listener to the deal button
+        generateDeck();
+        shuffleDeck();
+        dealButton.addEventListener('click', dealCards);
+    </script>
+</body>
+</html>
