@@ -35,13 +35,13 @@
             <h1>Card Pile</h1>
         </div>
         <button id="dealButton">Deal</button>
-        <button id="clearButton">Clear Card Pile</button> <!-- New Clear Button -->
+        <button id="clearButton">Clear Card Pile</button> 
     </div>
     <script>
         const cardArea = document.getElementById('cardArea');
         const discardArea = document.getElementById('discardArea');
         const dealButton = document.getElementById('dealButton');
-        const clearButton = document.getElementById('clearButton'); // Reference to the clear button
+        const clearButton = document.getElementById('clearButton'); 
         let deck = [];
         let numberOfCardsInDeck = 0;
 
@@ -60,7 +60,7 @@
             numberOfCardsInDeck = deck.length;
         }
 
-        function shuffleDeck() {
+        function shuffle() {
             for (let i = numberOfCardsInDeck - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -75,19 +75,19 @@
 
         function dealCard() {
             if (numberOfCardsInDeck === 0) {
-                alert("No more cards in the deck!");
+                alert("That's the end of the deck!");
                 return;
             }
 
-            const cardId = deck.pop(); // Get the last card in the deck
+            const cardId = deck.pop(); 
             const cardElement = createCardElement(cardId);
             cardArea.appendChild(cardElement);
-            numberOfCardsInDeck--; // Decrease the number of cards in the deck
+            numberOfCardsInDeck--;
         }
 
         function createCardElement(cardId) {
             const cardElement = document.createElement('img');
-            cardElement.src = `cards/${cardId}.png`; // Use .png
+            cardElement.src = `cards/${cardId}.png`;
             cardElement.classList.add('card');
             cardElement.draggable = true;
             cardElement.id = cardId;
@@ -125,7 +125,7 @@
         });
 
         generateDeck();
-        shuffleDeck();
+        shuffle();
     </script>
 </body>
 </html>
