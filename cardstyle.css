@@ -1,17 +1,8 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-}
-
 .game-container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+  
 }
 
 button {
@@ -25,7 +16,7 @@ button {
     flex-wrap: wrap;
     justify-content: center; 
     max-width: 600px;
-    padding-top: 150px;
+
 }
 
 .card {
@@ -52,5 +43,4 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
 }
