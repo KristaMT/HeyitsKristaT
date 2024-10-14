@@ -110,7 +110,7 @@
         let deck = [];
         let dealtCards = [];
 
-        // Generate a deck of cards
+        
         function generateDeck() {
             const suits = ['spades', 'clubs', 'hearts', 'diamonds'];
             const values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
@@ -121,12 +121,12 @@
                 }
             }
 
-            // Adding jokers
+            
             deck.push('black_joker');
             deck.push('red_joker');
         }
 
-        // Shuffle the deck
+       
         function shuffleDeck() {
             for (let i = deck.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -134,17 +134,17 @@
             }
         }
 
-        // Deal cards to the screen
+        
         function dealCards() {
             if (deck.length === 0) {
                 alert("No more cards in the deck!");
                 return;
             }
 
-            // Clear previously dealt cards
+          
             cardArea.innerHTML = '';
 
-            // Deal 5 cards
+           
             for (let i = 0; i < 5; i++) {
                 if (deck.length === 0) break;
 
@@ -155,7 +155,7 @@
             }
         }
 
-        // Create a card element
+       
         function createCardElement(cardId) {
             const cardElement = document.createElement('div');
             cardElement.classList.add('card');
@@ -169,7 +169,7 @@
             return cardElement;
         }
 
-        // Drag and drop functionality
+       
         function dragStart(event) {
             event.target.classList.add('dragging');
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -180,17 +180,17 @@
         }
 
         discardArea.addEventListener('dragover', event => {
-            event.preventDefault(); // Allow drop
+            event.preventDefault(); 
         });
 
         discardArea.addEventListener('drop', event => {
             event.preventDefault();
             const cardId = event.dataTransfer.getData('text/plain');
             const cardElement = document.getElementById(cardId);
-            discardArea.appendChild(cardElement); // Move card to discard area
+            discardArea.appendChild(cardElement); 
         });
 
-        // Initialize the deck and add event listener to the deal button
+      
         generateDeck();
         shuffleDeck();
         dealButton.addEventListener('click', dealCards);
