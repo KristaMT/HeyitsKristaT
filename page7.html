@@ -26,22 +26,25 @@
 </head>
 
 <body style="background-color:#fdedec;">
+
     <div class="game-container">
         <p>This page is programmed in HTML, CSS sheets, and JavaScript.</p>
         <br>
         <p>For this page, press "Deal" to draw 5 cards; you can drag those cards into the card pile if you want to keep them, or clear the pile when you want to delete them.</p>
         <div class="card-area" id="cardArea"></div>
         <div class="discard-area" id="discardArea">
-            <h1>Card Pile</h1>
+        <h1>Card Pile</h1>
         </div>
         <button id="dealButton">Deal</button>
-        <button id="clearButton">Clear Card Pile</button> 
+        <button id="discardButton">Clear Card Pile</button> 
     </div>
+
+
     <script>
         const cardArea = document.getElementById('cardArea');
         const discardArea = document.getElementById('discardArea');
         const dealButton = document.getElementById('dealButton');
-        const clearButton = document.getElementById('clearButton'); 
+        const discardButton = document.getElementById('discardButton'); 
         let deck = [];
         let numberOfCardsInDeck = 0;
 
@@ -118,7 +121,7 @@
             discardArea.appendChild(cardElement);
         });
 
-        clearButton.addEventListener('click', function() {
+        discardButton.addEventListener('click', function() {
             while (discardArea.firstChild) {
                 discardArea.removeChild(discardArea.firstChild);
             }
