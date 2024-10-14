@@ -4,145 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 7 -- Cards</title>
-<link rel="stylesheet" href="style.css">
-  <nav class="navbar">
-	<ul>
-		<li><a href="index.html">Home</a></li>
-	<li>
-			<a href="#">Assignments</a>
-			<ul>
-				<li><a href="page2.html">Page 2-Assignment 2</a></li>
-				<li><a href="page3.html">Page 3-Assignment 3</a></li>
-				<li><a href="page4.html">Page 4-Assignment 4</a></li>
-				<li><a href="page5.html">Page 5-Assignment 5</a></li>
-				<li><a href="page6.html">Page 6-Assignment 6</a></li>
-              			  <li><a href="page7.html">Page 7-Assignment 7</a></li>
-			
-			</ul>
-		</li>
-		<li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
-	</ul>
-</nav>
-<link rel="stylesheet" href="cardstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">Assignments</a>
+                <ul>
+                    <li><a href="page2.html">Page 2-Assignment 2</a></li>
+                    <li><a href="page3.html">Page 3-Assignment 3</a></li>
+                    <li><a href="page4.html">Page 4-Assignment 4</a></li>
+                    <li><a href="page5.html">Page 5-Assignment 5</a></li>
+                    <li><a href="page6.html">Page 6-Assignment 6</a></li>
+                    <li><a href="page7.html">Page 7-Assignment 7</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
+        </ul>
+    </nav>
+    <link rel="stylesheet" href="cardstyle.css">
 </head>
 
-<body>
-<body style="background-color:#fdedec;"> 
+<body style="background-color:#fdedec;">
     <div class="game-container">
-        <p>This page is programmed in html, css sheets, and javascript.</p>
-<br> 
-	<p> For this page, press "deal" to draw 5 cards, you can drag those cards into the card pile if you want to keep them.</p>
+        <p>This page is programmed in HTML, CSS sheets, and JavaScript.</p>
+        <br>
+        <p>For this page, press "Deal" to draw 5 cards; you can drag those cards into the card pile if you want to keep them.</p>
         <div class="card-area" id="cardArea"></div>
         <div class="discard-area" id="discardArea">
-	
             <h1>Card Pile</h1>
         </div>
-	    <button id="dealButton">Deal</button>
+        <button id="dealButton">Deal</button>
+        <button id="clearButton">Clear Discard Pile</button> <!-- New Clear Button -->
     </div>
     <script>
+        const cardArea = document.getElementById('cardArea');
+        const discardArea = document.getElementById('discardArea');
+        const dealButton = document.getElementById('dealButton');
+        const clearButton = document.getElementById('clearButton'); // Reference to the clear button
+        let deck = [];
+        let numberOfCardsInDeck = 0;
 
-const cardArea = document.getElementById('cardArea');
-const discardArea = document.getElementById('discardArea');
-const dealButton = document.getElementById('dealButton');
-let deck = [];
-let numberOfCardsInDeck = 0;
+        function generateDeck() {
+            const suits = ['spades', 'clubs', 'hearts', 'diamonds'];
+            const values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+            deck = [];
 
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push(`${value}_of_${suit}`);
+                }
+            }
 
-function generateDeck() {
-    const suits = ['spades', 'clubs', 'hearts', 'diamonds'];
-    const values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
-    deck = [];
-
-    for (let suit of suits) {
-        for (let value of values) {
-            deck.push(`${value}_of_${suit}`);
+            deck.push('black_joker', 'red_joker');
+            numberOfCardsInDeck = deck.length;
         }
-    }
 
-    deck.push('black_joker', 'red_joker');
-    numberOfCardsInDeck = deck.length;
-}
+        function shuffleDeck() {
+            for (let i = numberOfCardsInDeck - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
 
+        dealButton.addEventListener('click', function() {
+            for (let i = 0; i < 5; i++) {
+                dealCard();
+            }
+        });
 
-function shuffleDeck() {
-    for (let i = numberOfCardsInDeck - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [deck[i], deck[j]] = [deck[j], deck[i]];
-    }
-}
+        function dealCard() {
+            if (numberOfCardsInDeck === 0) {
+                alert("No more cards in the deck!");
+                return;
+            }
 
+            const cardId = deck.pop(); // Get the last card in the deck
+            const cardElement = createCardElement(cardId);
+            cardArea.appendChild(cardElement);
+            numberOfCardsInDeck--; // Decrease the number of cards in the deck
+        }
 
-dealButton.addEventListener('click', function() {
-    dealCard(randomCard());
-});
+        function createCardElement(cardId) {
+            const cardElement = document.createElement('img');
+            cardElement.src = `cards/${cardId}.png`; // Use .png
+            cardElement.classList.add('card');
+            cardElement.draggable = true;
+            cardElement.id = cardId;
 
+            cardElement.addEventListener('dragstart', dragStart);
+            cardElement.addEventListener('dragend', dragEnd);
 
-function dealCard(i) {
-    if (numberOfCardsInDeck === 0) {
-        alert("No more cards in the deck!");
-        return;
-    }
+            return cardElement;
+        }
 
-    const cardId = deck[i];
-    const cardElement = createCardElement(cardId);
-    cardArea.appendChild(cardElement);
-    removeCard(i);
-}
+        function dragStart(event) {
+            event.target.classList.add('dragging');
+            event.dataTransfer.setData('text/plain', event.target.id);
+        }
 
+        function dragEnd(event) {
+            event.target.classList.remove('dragging');
+        }
 
-function createCardElement(cardId) {
-    const cardElement = document.createElement('img');
-    cardElement.src = `cards/${cardId}.png`; // Use .png
-    cardElement.classList.add('card');
-    cardElement.draggable = true;
-    cardElement.id = cardId;
+        discardArea.addEventListener('dragover', event => {
+            event.preventDefault();
+        });
 
-    cardElement.addEventListener('dragstart', dragStart);
-    cardElement.addEventListener('dragend', dragEnd);
+        discardArea.addEventListener('drop', event => {
+            event.preventDefault();
+            const cardId = event.dataTransfer.getData('text/plain');
+            const cardElement = document.getElementById(cardId);
+            discardArea.appendChild(cardElement);
+        });
 
-    return cardElement;
-}
+        // Clear Discard Pile functionality
+        clearButton.addEventListener('click', function() {
+            while (discardArea.firstChild) {
+                discardArea.removeChild(discardArea.firstChild);
+            }
+        });
 
-
-function randomCard() {
-    return Math.floor(Math.random() * numberOfCardsInDeck);
-}
-
-
-function removeCard(index) {
-    for (let j = index; j < numberOfCardsInDeck - 1; j++) {
-        deck[j] = deck[j + 1];
-    }
-    numberOfCardsInDeck--;
-}
-
-
-function dragStart(event) {
-    event.target.classList.add('dragging');
-    event.dataTransfer.setData('text/plain', event.target.id);
-}
-
-function dragEnd(event) {
-    event.target.classList.remove('dragging');
-}
-
-discardArea.addEventListener('dragover', event => {
-    event.preventDefault();
-});
-
-discardArea.addEventListener('drop', event => {
-    event.preventDefault();
-    const cardId = event.dataTransfer.getData('text/plain');
-    const cardElement = document.getElementById(cardId);
-    discardArea.appendChild(cardElement);
-});
-
-
-generateDeck();
-shuffleDeck();
-
-
-        dealButton.addEventListener('click', dealCards);
+        // Initialize the deck
+        generateDeck();
+        shuffleDeck();
     </script>
 </body>
 </html>
