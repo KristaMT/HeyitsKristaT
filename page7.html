@@ -119,12 +119,15 @@
             const cardId = event.dataTransfer.getData('text/plain');
             const cardElement = document.getElementById(cardId);
             discardArea.appendChild(cardElement);
+
+            
         });
 
         discardButton.addEventListener('click', function() {
             while (discardArea.firstChild) {
                 discardArea.removeChild(discardArea.firstChild);
             }
+            alert(`You discarded a card`);
         });
 
         generateDeck();
