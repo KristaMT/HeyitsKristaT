@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <nav class="navbar">
+	<ul>
+		<li><a href="index.html">Home</a></li>
+	<li>
+			<a href="#">Assignments</a>
+			<ul>
+				<li><a href="page2.html">Page 2-Assignment 2</a></li>
+				<li><a href="page3.html">Page 3-Assignment 3</a></li>
+				<li><a href="page4.html">Page 4-Assignment 4</a></li>
+				<li><a href="page5.html">Page 5-Assignment 5</a></li>
+				<li><a href="page6.html">Page 6-Assignment 6</a></li>
+         		       <li><a href="page7.html">Page 7-Assignment 7</a></li>
+					   <li><a href="page9.html">Page 9-Assignment 9</a></li>
+			
+			</ul>
+		</li>
+		<li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
+	</ul>
+</nav>
+	
+    <title>Assignment 9 -- Animation</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+        #controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="animateCanvas" width="800" height="600"></canvas>
+    <div id="controls">
+        <button id="playButton">Play</button>
+        <button id="pauseButton">Pause</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('animateCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const img = new Image();
+        img.src = 'dvd.jpg'; 
+
+        let x = 50;
+        let y = 50;
+        let dx = 2;
+        let dy = 2;
+        let animationId; 
+        let isAnimating = false; //where is the image for play/pause
+
+        img.onload = () => { //start button
+        };
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, x, y);
+
+            x += dx;
+            y += dy;
+
+            if (x + img.width > canvas.width || x < 0) {
+                dx = -dx;
+            }
+            if (y + img.height > canvas.height || y < 0) {
+                dy = -dy;
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function playAnimation() {
+            if (!isAnimating) {
+                isAnimating = true;
+                animate();
+            }
+        }
+
+        function pauseAnimation() {
+            if (isAnimating) {
+                isAnimating = false;
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        document.getElementById('playButton').addEventListener('click', playAnimation);
+        document.getElementById('pauseButton').addEventListener('click', pauseAnimation);
+    </script>
+</body>
+</html>
