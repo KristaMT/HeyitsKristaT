@@ -3,27 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	 <nav class="navbar">
-	<ul>
-		<li><a href="index.html">Home</a></li>
-	<li>
-			<a href="#">Assignments</a>
-			<ul>
-				<li><a href="page2.html">Page 2-Assignment 2</a></li>
-				<li><a href="page3.html">Page 3-Assignment 3</a></li>
-				<li><a href="page4.html">Page 4-Assignment 4</a></li>
-				<li><a href="page5.html">Page 5-Assignment 5</a></li>
-				<li><a href="page6.html">Page 6-Assignment 6</a></li>
-         		        <li><a href="page7.html">Page 7-Assignment 7</a></li>
-			        <li><a href="page9.html">Page 9-Assignment 9</a></li>
-			
-			</ul>
-		</li>
-		<li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
-	</ul>
-</nav>
-	<body style="background-color:#fdedec;""> 
+    <link rel="stylesheet" href="style.css">
     <title>Assignment 9 -- Animation</title>
     <style>
         canvas {
@@ -31,20 +11,32 @@
             display: block;
             margin: 0 auto;
         }
-        #controls {
-            text-align: center;
-            margin-top: 10px;
-        }
     </style>
 </head>
-<body>
-	<p>This page was built with HTML, CSS and Javascript. Please click play to begin animation. *I do not own the DVD screensaver logo*</p>
-	<h1 style="text-align: center;"> HTML Animation - DVD screen </h1>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">Assignments</a>
+                <ul>
+                    <li><a href="page2.html">Page 2-Assignment 2</a></li>
+                    <li><a href="page3.html">Page 3-Assignment 3</a></li>
+                    <li><a href="page4.html">Page 4-Assignment 4</a></li>
+                    <li><a href="page5.html">Page 5-Assignment 5</a></li>
+                    <li><a href="page6.html">Page 6-Assignment 6</a></li>
+                    <li><a href="page7.html">Page 7-Assignment 7</a></li>
+                    <li><a href="page9.html">Page 9-Assignment 9</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
+        </ul>
+    </nav>
+    
+    <p>This page was built with HTML, CSS, and JavaScript. Click the canvas to pause or play the animation. *I do not own the DVD screensaver logo*</p>
+    <h1 style="text-align: center;">HTML Animation - DVD Screen</h1>
     <canvas id="animateCanvas" width="800" height="600"></canvas>
-    <div id="controls">
-        <button id="playButton">Play</button>
-        <button id="pauseButton">Pause</button>
-    </div>
+
     <script>
         const canvas = document.getElementById('animateCanvas');
         const ctx = canvas.getContext('2d');
@@ -57,9 +49,10 @@
         let dx = 2;
         let dy = 2;
         let animationId; 
-        let isAnimating = false; //where is the image for play/pause
+        let isAnimating = true; 
 
-        img.onload = () => { //start button
+        img.onload = () => {
+            animate(); // Start the animation automatically
         };
 
         function animate() {
@@ -76,25 +69,23 @@
                 dy = -dy;
             }
 
-            animationId = requestAnimationFrame(animate);
-        }
-
-        function playAnimation() {
-            if (!isAnimating) {
-                isAnimating = true;
-                animate();
-            }
-        }
-
-        function pauseAnimation() {
             if (isAnimating) {
-                isAnimating = false;
-                cancelAnimationFrame(animationId);
+                animationId = requestAnimationFrame(animate);
             }
         }
 
-        document.getElementById('playButton').addEventListener('click', playAnimation);
-        document.getElementById('pauseButton').addEventListener('click', pauseAnimation);
+        function toggleAnimation() {
+            isAnimating = !isAnimating;
+
+            if (isAnimating) {
+                animate(); // Resume animation
+            } else {
+                cancelAnimationFrame(animationId); // Pause animation
+            }
+        }
+
+        canvas.addEventListener('click', toggleAnimation); // Toggle 
     </script>
 </body>
 </html>
+
