@@ -1,4 +1,4 @@
-/* Global Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@ body {
     background-color: #fdedec;
 }
 
-/* Container */
+
 .container {
     min-height: 100vh;
     display: flex;
@@ -22,7 +22,7 @@ body {
     margin: auto;
 }
 
-/* Navbar Styles */
+
 .navbar {
     background-color: #333;
     position: relative;
@@ -49,12 +49,12 @@ body {
     text-decoration: none;
 }
 
-/* Dropdown Menu */
+
 .navbar ul ul {
     position: absolute;
     top: 100%;
     display: none;
-    background: black; /* Ensure dropdown matches navbar */
+    background: black; 
 }
 
 .navbar ul ul li {
@@ -65,7 +65,7 @@ body {
     display: block;
 }
 
-/* Header Styles */
+
 h1 {
     background-color: #f5b7b1;
     text-align: center;
@@ -73,7 +73,7 @@ h1 {
     margin: 0;
 }
 
-/* Image Styles */
+
 img {
     max-width: 100%;
     height: auto;
@@ -81,14 +81,14 @@ img {
     margin: 0 auto;
 }
 
-/* Footer Styles */
+
 footer {
     text-align: center;
     padding: 20px;
     background-color: #f5b7b1;
 }
 
-/* Media Queries */
+
 @media (max-width: 600px) {
     .navbar li {
         display: block;
@@ -96,7 +96,7 @@ footer {
     }
 }
 
-/* Game Container Styles */
+
 .game-container {
     display: flex;
     flex-direction: column;
