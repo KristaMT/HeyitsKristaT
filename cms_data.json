@@ -1,0 +1,87 @@
+[
+  {
+    "name": "WordPress",
+    "support": "Open Source",
+    "technology": "PHP/MySQL",
+    "capabilities": [
+      "Supports themes",
+      "Supports plugins",
+      "Public API"
+    ],
+    "limitations": [
+      "Security (plugins)",
+      "Security (updates)"
+    ],
+    "examples": [
+      "https://time.com/"
+    ]
+  },
+  {
+    "name": "Magento",
+    "support": "Open Source",
+    "technology": "PHP",
+    "capabilities": [
+      "SEO-friendly",
+      "Mobile Friendly",
+      "Scalability"
+    ],
+    "limitations": [
+      "expensive",
+      "Requires technical expertise"
+    ],
+    "examples": [
+      "https://www.ford.com/accessories"
+    ]
+  },
+  {
+    "name": "Drupal",
+    "support": "Open Source",
+    "technology": "PHP/MySQL",
+    "capabilities": [
+      "Highly customizable",
+      "Content modeling",
+      "Extensive API support"
+    ],
+    "limitations": [
+      "Requires technical expertise",
+      "Complex user interface"
+    ],
+    "examples": [
+      "https://ew.com/"
+    ]
+  },
+  {
+    "name": "Contentful",
+    "support": "Cloud-Based",
+    "technology": "Cloud-based platform",
+    "capabilities": [
+      "API-first approach",
+      "user-friendly interface",
+      "Very scalable"
+    ],
+    "limitations": [
+      "Limited security features",
+      "higher cost"
+    ],
+    "examples": [
+      "https://www.ikea.com/"
+    ]
+  },
+  {
+    "name": "Squarespace",
+    "support": "Proprietary (Cloud-Based)",
+    "technology": "Cloud-based platform",
+    "capabilities": [
+      "Drag-and-drop editor",
+      "E-commerce",
+      "Built-in templates"
+    ],
+    "limitations": [
+      "Less flexible than WordPress",
+      "Limited integrations"
+    ],
+    "examples": [
+      "https://www.squarespace.com/"
+    ]
+  }
+]
