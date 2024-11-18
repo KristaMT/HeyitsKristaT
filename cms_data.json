@@ -9,8 +9,8 @@
       "Public API"
     ],
     "limitations": [
-      "Security (plugins)",
-      "Security (updates)"
+      "Weak Security",
+      "needs constant updates"
     ],
     "examples": [
       "https://time.com/"
@@ -72,16 +72,15 @@
     "support": "Proprietary (Cloud-Based)",
     "technology": "Cloud-based platform",
     "capabilities": [
-      "Drag-and-drop editor",
-      "E-commerce",
+      "User-Friendly editor",
       "Built-in templates"
     ],
     "limitations": [
-      "Less flexible than WordPress",
+      "Less flexible",
       "Limited integrations"
     ],
     "examples": [
-      "https://www.squarespace.com/"
+      "https://www.hbo.com/documentaries"
     ]
   }
 ]
