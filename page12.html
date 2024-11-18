@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+  <title>Page 12 -- CMS</title>
+      <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">Assignments</a>
+                <ul>
+                <li><a href="page2.html">Page 2-Assignment 2</a></li>
+				<li><a href="page3.html">Page 3-Assignment 3</a></li>
+				<li><a href="page4.html">Page 4-Assignment 4</a></li>
+				<li><a href="page5.html">Page 5-Assignment 5</a></li>
+				<li><a href="page6.html">Page 6-Assignment 6</a></li>
+                <li><a href="page7.html">Page 7-Assignment 7</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.daytonastate.edu/">Daytona State</a></li>
+        </ul>
+    </nav>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    td a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    td a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Content Management Systems</h1>
+
+  <table id="cmsTable">
+    <thead>
+      <tr>
+        <th>System</th>
+        <th>Produced/Sold by</th>
+        <th>Technology Base</th>
+        <th>Major Capabilities</th>
+        <th>Major Limitations</th>
+        <th>Example Site</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  <script>
+   
+    fetch('cms_data.json')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#cmsTable tbody');
+        
+       
+        data.forEach(cms => {
+          const row = document.createElement('tr');
+          
+        
+          const nameCell = document.createElement('td');
+          nameCell.textContent = cms.name;
+          row.appendChild(nameCell);
+          
+        
+          const supportCell = document.createElement('td');
+          supportCell.textContent = cms.support;
+          row.appendChild(supportCell);
+          
+        
+          const technologyCell = document.createElement('td');
+          technologyCell.textContent = cms.technology;
+          row.appendChild(technologyCell);
+          
+    
+          const capabilitiesCell = document.createElement('td');
+          capabilitiesCell.innerHTML = cms.capabilities.join('<br>');
+          row.appendChild(capabilitiesCell);
+          
+         
+          const limitationsCell = document.createElement('td');
+          limitationsCell.innerHTML = cms.limitations.join('<br>');
+          row.appendChild(limitationsCell);
+          
+         
+          const exampleSiteCell = document.createElement('td');
+          const link = document.createElement('a');
+          link.href = cms.examples[0];
+          link.target = '_blank';
+          link.textContent = cms.examples[0];
+          exampleSiteCell.appendChild(link);
+          row.appendChild(exampleSiteCell);
+          
+        
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error('Error loading the CMS data:', error));
+  </script>
+</body>
+</html>
